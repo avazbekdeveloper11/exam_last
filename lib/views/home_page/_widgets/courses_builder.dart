@@ -17,8 +17,11 @@ class CoursesBuilder extends StatelessWidget {
           crossAxisCount: 1,
         ),
         itemBuilder: (_, __) {
-          return Container(
-            color: Colors.red,
+          return InkWell(
+            onTap: () => Navigator.pushNamed(context, "/product_screen"),
+            child: Container(
+              color: Colors.red,
+            ),
           );
         },
       ),

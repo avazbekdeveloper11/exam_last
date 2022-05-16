@@ -1,5 +1,7 @@
 import 'package:exam_last/core/init/splash_screen/splash_page.dart';
 import 'package:exam_last/views/home_page/home_page.dart';
+import 'package:exam_last/views/product_page/product_page.dart';
+import 'package:exam_last/views/video_page/video_page.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -15,8 +17,12 @@ class RouteGenerator {
         return navPage(const SplashScreen());
       case "/home_screen":
         return navPage(const HomePage());
+      case "/product_screen":
+        return navPage(const ProductPage());
+      case "/video_screen":
+        return navPage(const VideoPage());
     }
-    return null;
+    return null; //video_screen
   }
 
   MaterialPageRoute<dynamic> navPage(page) {
