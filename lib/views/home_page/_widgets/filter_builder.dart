@@ -26,7 +26,7 @@ class FilterBuilder extends StatelessWidget {
                     width: getHeight(72),
                     height: getHeight(71),
                     decoration: BoxDecoration(
-                      color: ColorConst.instance.kGrey,
+                      color: ColorConst.instance.kProductCartWhite,
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),

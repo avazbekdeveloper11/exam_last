@@ -61,7 +61,7 @@ class ProductBuilder extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(
                             top: getHeight(4),
-                            bottom: getHeight(26),
+                            bottom: getHeight(18),
                           ),
                           child: Text(
                             "Abbos Xazratov",
@@ -76,7 +76,7 @@ class ProductBuilder extends StatelessWidget {
                               style: StyleConst.instance.styleSmall(13),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: getWidht(28)),
+                              padding: EdgeInsets.only(left: getWidht(25)),
                               child: IconButton(
                                 splashRadius: 25,
                                 icon: SvgPicture.asset(

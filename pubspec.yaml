@@ -38,6 +38,7 @@ dependencies:
   bloc: ^8.0.3
   connectivity_plus: ^2.3.0
   flutter_svg: ^1.0.3
+  youtube_player_flutter: ^8.1.0
 
 dev_dependencies:
   flutter_test:
@@ -92,3 +93,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+module:
+  androidX: true 

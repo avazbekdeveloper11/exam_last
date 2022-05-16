@@ -20,7 +20,7 @@ class RouteGenerator {
       case "/product_screen":
         return navPage(const ProductPage());
       case "/video_screen":
-        return navPage(const VideoPage());
+        return navPage(VideoPage());
     }
     return null; //video_screen
   }
