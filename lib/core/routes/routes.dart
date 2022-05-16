@@ -13,7 +13,7 @@ class RouteGenerator {
     switch (settings.name) {
       case "/":
         return navPage(const SplashScreen());
-      case "/home":
+      case "/home_screen":
         return navPage(const HomePage());
     }
     return null;
