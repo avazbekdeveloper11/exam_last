@@ -38,9 +38,9 @@ class _BaseViewState extends State<BaseView> {
   @override
   Widget build(BuildContext context) {
     return internetStatus == ConnectivityResult.none
-        ? Scaffold(
-            appBar: AppBar(
-              title: const Text("NO INTERNET"),
+        ? const Scaffold(
+            body: Center(
+              child: Text("NO INTERNET"),
             ),
           )
         : widget.onPageBuilder!(context, widget.viewModel);
