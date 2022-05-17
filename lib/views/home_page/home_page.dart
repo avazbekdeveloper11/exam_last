@@ -3,6 +3,7 @@ import 'package:exam_last/core/components/text_form_deco.dart';
 import 'package:exam_last/core/components/text_styles.dart';
 import 'package:exam_last/core/constant/size_config.dart';
 import 'package:exam_last/core/data/data.dart';
+import 'package:exam_last/core/init/base_view/base_view.dart';
 import 'package:exam_last/services/service.dart';
 import 'package:exam_last/views/home_page/_widgets/courses_builder.dart';
 import 'package:exam_last/views/home_page/_widgets/filter_builder.dart';
@@ -14,9 +15,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeCubit(),
-      child: homeScaffold(),
+    return BaseView(
+      viewModal: HomePage,
+      onPageBuilder: (context, widget) => BlocProvider(
+        create: (context) => HomeCubit(),
+        child: homeScaffold(),
+      ),
     );
   }
 

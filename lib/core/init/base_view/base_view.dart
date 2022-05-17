@@ -1,30 +1,33 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:exam_last/views/network_error/network_error.dart';
 import 'package:flutter/material.dart';
 
 class BaseView<T> extends StatefulWidget {
-  final T? viewModel;
+  final T? viewModal;
   final Widget Function(BuildContext context, T value)? onPageBuilder;
   final Function(T model)? onModelReady;
   final VoidCallback? onDispose;
 
-  const BaseView(
-      {Key? key,
-      required this.viewModel,
-      required this.onPageBuilder,
-      required this.onModelReady,
-      required this.onDispose})
-      : super(key: key);
+  const BaseView({
+    Key? key,
+    required this.viewModal,
+    required this.onPageBuilder,
+    this.onDispose,
+    this.onModelReady,
+  }) : super(key: key);
 
   @override
-  _BaseViewState createState() => _BaseViewState();
+  State<BaseView> createState() => _BaseViewState();
 }
 
 class _BaseViewState extends State<BaseView> {
   var subscription;
   var internetStatus;
+
   @override
   void initState() {
     super.initState();
+    // connectivity_plus
     subscription = Connectivity()
         .onConnectivityChanged
         .listen((ConnectivityResult result) {
@@ -32,17 +35,20 @@ class _BaseViewState extends State<BaseView> {
         internetStatus = result;
       });
     });
-    if (widget.onModelReady != null) widget.onModelReady!(widget.onDispose);
+    if (widget.onModelReady != null) widget.onModelReady!(widget.viewModal);
   }
 
   @override
   Widget build(BuildContext context) {
     return internetStatus == ConnectivityResult.none
-        ? const Scaffold(
-            body: Center(
-              child: Text("NO INTERNET"),
-            ),
-          )
-        : widget.onPageBuilder!(context, widget.viewModel);
+        ? const NetworkError()
+        : widget.onPageBuilder!(context, widget.viewModal);
+  }
+
+  @override
+  void dispose() {
+    subscription.dispose;
+    if (widget.onDispose != null) widget.onDispose!();
+    super.dispose();
   }
 }
