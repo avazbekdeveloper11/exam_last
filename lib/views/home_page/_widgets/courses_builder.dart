@@ -1,11 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:exam_last/core/components/text_styles.dart';
 import 'package:exam_last/core/constant/color_constant.dart';
 import 'package:exam_last/core/constant/size_config.dart';
 import 'package:flutter/material.dart';
 
 class CoursesBuilder extends StatelessWidget {
-  const CoursesBuilder({
+  List data;
+  CoursesBuilder({
     Key? key,
+    required this.data,
   }) : super(key: key);
 
   @override
@@ -20,7 +23,6 @@ class CoursesBuilder extends StatelessWidget {
         ),
         itemBuilder: (_, __) {
           return InkWell(
-            onTap: () => Navigator.pushNamed(context, "/product_screen"),
             child: Container(
               decoration: BoxDecoration(
                 color: ColorConst.instance.kProductCartWhite,
@@ -36,8 +38,8 @@ class CoursesBuilder extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: NetworkImage(
-                              "https://source.unsplash.com/random/$__",
+                            image: CachedNetworkImageProvider(
+                              data[__]['attributes']['img_url'][0]['url'],
                             ),
                             fit: BoxFit.cover,
                           ),
@@ -59,7 +61,7 @@ class CoursesBuilder extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "UX/UI dizayn",
+                              data[__]["attributes"]['name'],
                               style: StyleConst.instance.styleBold(14),
                             ),
                             Padding(
@@ -67,7 +69,7 @@ class CoursesBuilder extends StatelessWidget {
                                 vertical: getHeight(4),
                               ),
                               child: Text(
-                                "Boshlang`ich darajadagilar uchun",
+                                data[__]["attributes"]['subtitle'],
                                 style: StyleConst.instance.styleSmall(12),
                               ),
                             ),
@@ -78,7 +80,7 @@ class CoursesBuilder extends StatelessWidget {
                                   color: ColorConst.instance.kBlue,
                                 ),
                                 Text(
-                                  "  " "97%",
+                                  "  " + data[__]['attributes']['percent'],
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     color: ColorConst.instance.kBlue,
@@ -94,8 +96,14 @@ class CoursesBuilder extends StatelessWidget {
                 ],
               ),
             ),
+            onTap: () => Navigator.pushNamed(
+              context,
+              "/product_screen",
+              arguments: data[__]['attributes']['lesson'],
+            ),
           );
         },
+        itemCount: data.length,
       ),
     );
   }

@@ -7,8 +7,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/parser.dart';
 
 class ProductBuilder extends StatelessWidget {
+  final lessons;
   const ProductBuilder({
     Key? key,
+    required this.lessons,
   }) : super(key: key);
 
   @override
@@ -19,7 +21,6 @@ class ProductBuilder extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.only(bottom: getHeight(12)),
           child: InkWell(
-            onTap: () => Navigator.pushNamed(context, "/video_screen"),
             child: Container(
               height: getHeight(140),
               decoration: BoxDecoration(
@@ -34,7 +35,7 @@ class ProductBuilder extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(
-                          "https://source.unsplash.com/random/$__",
+                          lessons['list'][__]['url'],
                         ),
                         fit: BoxFit.cover,
                       ),
@@ -54,7 +55,7 @@ class ProductBuilder extends StatelessWidget {
                         SizedBox(
                           width: getWidht(170),
                           child: Text(
-                            "UX/UI nima? Soha haqida umumiy tushuncha.",
+                            lessons['list'][__]['title'],
                             style: StyleConst.instance.styleBold(14),
                           ),
                         ),
@@ -64,7 +65,7 @@ class ProductBuilder extends StatelessWidget {
                             bottom: getHeight(18),
                           ),
                           child: Text(
-                            "Abbos Xazratov",
+                            lessons['list'][__]['person'],
                             style: StyleConst.instance.styleSmall(13),
                           ),
                         ),
@@ -92,6 +93,11 @@ class ProductBuilder extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            onTap: () => Navigator.pushNamed(
+              context,
+              "/video_screen",
+              arguments: lessons['list'][__]["video"],
             ),
           ),
         );

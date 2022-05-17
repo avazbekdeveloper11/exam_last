@@ -14,13 +14,21 @@ class RouteGenerator {
 
     switch (settings.name) {
       case "/":
-        return navPage(const SplashScreen());
+        return navPage(
+          const SplashScreen(),
+        );
       case "/home_screen":
-        return navPage(const HomePage());
+        return navPage(
+          const HomePage(),
+        );
       case "/product_screen":
-        return navPage(const ProductPage());
+        return navPage(
+          ProductPage(lessons: args),
+        );
       case "/video_screen":
-        return navPage(VideoPage());
+        return navPage(
+          VideoPage(video: args),
+        );
     }
     return null; //video_screen
   }

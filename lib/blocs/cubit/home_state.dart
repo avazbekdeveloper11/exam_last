@@ -1,6 +1,17 @@
 part of 'home_cubit.dart';
 
 @immutable
-abstract class HomeState {}
+abstract class HomeState {
+  const HomeState();
+}
 
-class HomeInitial extends HomeState {}
+class HomeInitial extends HomeState {
+  const HomeInitial();
+}
+
+class GetState extends HomeState {
+  const GetState();
+}
+
+
+//

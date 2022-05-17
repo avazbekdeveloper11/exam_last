@@ -3,7 +3,7 @@ class PathConstant {
   static PathConstant get instance => _instance;
   PathConstant._init();
 
-  String urlAPI = "http://localhost:1337/api/lessons?populate=*";
+  String urlAPI = "http://localhost:1337/api/";
   // * PNG
   String appIcon = "assets/images/png/app_icon.png";
   String organaApp = "assets/images/png/organa_app.png";

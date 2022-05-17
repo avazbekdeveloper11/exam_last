@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProductAppBar extends StatelessWidget {
-  const ProductAppBar({
+  String name;
+  ProductAppBar({
     Key? key,
+    required this.name,
   }) : super(key: key);
 
   @override
@@ -21,7 +23,7 @@ class ProductAppBar extends StatelessWidget {
         icon: Icon(Icons.arrow_back, color: ColorConst.instance.kBlack),
       ),
       title: Text(
-        "UX/UI darslari",
+        name,
         style: StyleConst.instance.styleBold(25),
       ),
       actions: [

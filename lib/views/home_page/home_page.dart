@@ -2,6 +2,8 @@ import 'package:exam_last/blocs/cubit/home_cubit.dart';
 import 'package:exam_last/core/components/text_form_deco.dart';
 import 'package:exam_last/core/components/text_styles.dart';
 import 'package:exam_last/core/constant/size_config.dart';
+import 'package:exam_last/core/data/data.dart';
+import 'package:exam_last/services/service.dart';
 import 'package:exam_last/views/home_page/_widgets/courses_builder.dart';
 import 'package:exam_last/views/home_page/_widgets/filter_builder.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,8 @@ class HomePage extends StatelessWidget {
         },
         builder: (context, state) {
           return FutureBuilder(
-            builder: ((context, snapshot) {
+            future: Service.getData(),
+            builder: ((context, AsyncSnapshot snapshot) {
               if (!snapshot.hasData) {
                 return const Center(
                   child: CircularProgressIndicator.adaptive(),
@@ -56,7 +59,7 @@ class HomePage extends StatelessWidget {
                         bottom: getHeight(22),
                       ),
                       child: Text(
-                        "28 xil yo`nalishda darsliklar mavjud",
+                        category[context.watch<HomeCubit>().items]['subtitle'],
                         style: StyleConst.instance.styleSmall(12),
                       ),
                     ),
@@ -83,7 +86,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     // ! Courses Builder
-                    const CoursesBuilder(),
+                    CoursesBuilder(data: snapshot.data),
                   ],
                 );
               }
